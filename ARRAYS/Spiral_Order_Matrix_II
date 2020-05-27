@@ -1,0 +1,33 @@
+vector<vector<int> > Solution::generateMatrix(int A) {
+        vector<vector<int>>arr(A);
+    for(int i=0;i<A;i++){
+        vector<int>a(A);
+        arr[i]=a;
+    }
+    int left=0,right=A;
+    int top=0,bottom=A;
+    int currE=1;
+    while(left<right&&top<bottom){
+        for(int i=left;i<right;i++){
+            arr[top][i]=currE++;
+        }
+        top++;
+        for(int i=top;i<bottom;i++){
+            arr[i][right-1]=currE++;
+        }
+        right--;
+        if(top<bottom){
+            for(int i=right-1;i>=left;i--){
+                arr[bottom-1][i]=currE++;
+            }
+            bottom--;
+        }
+        if(left<right){
+            for(int i=bottom-1;i>=top;i--){
+                arr[i][left]=currE++;
+            }
+            left++;
+        }
+    }
+    return arr;
+}
